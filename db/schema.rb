@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_194409) do
+ActiveRecord::Schema.define(version: 2021_03_05_205923) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,12 +60,32 @@ ActiveRecord::Schema.define(version: 2021_03_05_194409) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "win", default: false
+    t.integer "weapon_id"
+    t.integer "shield_id"
     t.index ["character_id"], name: "index_players_on_character_id"
     t.index ["fight_id"], name: "index_players_on_fight_id"
+    t.index ["shield_id"], name: "index_players_on_shield_id"
+    t.index ["weapon_id"], name: "index_players_on_weapon_id"
+  end
+
+  create_table "shields", force: :cascade do |t|
+    t.string "name"
+    t.integer "power"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name"
+    t.integer "power"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "fight_logs", "fights"
   add_foreign_key "players", "characters"
   add_foreign_key "players", "fights"
+  add_foreign_key "players", "shields"
+  add_foreign_key "players", "weapons"
 end

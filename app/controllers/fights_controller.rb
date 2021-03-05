@@ -65,6 +65,6 @@ class FightsController < ApplicationController
   end
 
   def fight_params
-    params.require(:fight).permit(players_attributes: [:id, :character_id])
+    params.require(:fight).permit(players_attributes: [:id, :character_id, :weapon_id, :shield_id])
   end
 end

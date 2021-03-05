@@ -6,3 +6,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Create shields
+
+Shield.create(name: "Brennus", power: 45)
+Weapon.create(name: "Excalibur", power: 105)
