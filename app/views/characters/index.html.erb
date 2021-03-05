@@ -2,6 +2,10 @@ index.html.erb
 <div class="container">
   <div>
     <h1>available characters</h1>
+      <% @characters.each do |character| %>
+        <p> <%= character.name %> </p>
+        <br>
+      <% end %>
     <div>
 
     </div>
