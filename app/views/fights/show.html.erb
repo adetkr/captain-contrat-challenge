@@ -1,1 +1,24 @@
-show.html.erb
+
+<div class="container">
+  <div>
+    <div class="character">
+      <p> <%= @fight.players[0].character.name  %> </p>
+    </div>
+
+    <div class="character">
+      <p> <%= @fight.players[1].character.name  %> </p>
+    </div>
+  </div>
+
+  <% @fight.fight_logs.each do |fight_log| %>
+    <p> <%= fight_log.move_description %> </p>
+  <% end %>
+
+  <div>
+     <%= link_to "FIGHT AGAIN!", new_fight_path %>
+  </div>
+
+  <div>
+     <%= link_to "HOME", root_path %>
+  </div>
+</div>

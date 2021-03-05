@@ -14,8 +14,6 @@ class FightsController < ApplicationController
     @fight.players.build
   end
 
-
-
   def create
     @fight = Fight.new(fight_params)
     if @fight.save
@@ -32,16 +30,23 @@ class FightsController < ApplicationController
         attack(player2, player1)
 
       end
+      player1.win = player2.character.life <= 0
+      player2.win = !player1.win
 
-      if player2.character.life <= 0
-        p " #{player1.character.name } win }"
+      if player1.win
+        log = FightLog.new()
+        log.fight = player1.fight
+        log.move_description = " #{player1.character.name } win "
+        log.save
       else
-        p " #{player2.character.name } win }"
+        log = FightLog.new()
+        log.fight = player1.fight
+        log.move_description = " #{player2.character.name } win "
+        log.save
       end
       player1.save
       player2.save
-      raise
-      # update fight
+
       redirect_to fight_path(@fight)
     else
       render :new
@@ -53,7 +58,10 @@ class FightsController < ApplicationController
   def attack(player1, player2)
 
     player2.character.life -= player1.character.attack / 10
-    p " #{player1.character.name } impact #{player1.character.attack / 10} damage to #{player2.character.name }"
+    log = FightLog.new()
+    log.fight = player1.fight
+    log.move_description = " #{player1.character.name } impact #{player1.character.attack / 10} damage to #{player2.character.name }"
+    log.save
   end
 
   def fight_params
