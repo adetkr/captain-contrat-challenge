@@ -1,7 +1,20 @@
+
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.freepik.com/vecteurs-libre/versus-vs-ecran-deux-effets-lumiere-focalises_1017-26146.jpg);">
+  <div class="container">
+    <h1> <strong>Ultimate Fight</strong> </h1>
+    <p>Create your favorites characters and make them fight !!</p>
+    <%= link_to "Begin the game", characters_path,  class: "btn btn-flat" %>
+  </div>
+</div>
+
 <div class="container">
-  <h1>Ultimate Fight</h1>
-
-  <p>Create your favorites characters and make them fight !!</p>
-
-  <%= link_to "Begin the game", characters_path %>
+  <h1> Last Games Played</h1>
+  <% Fight.all.last(5).each do |fight| %>
+    <%= link_to fight_path(fight) do %>
+      <div class="fight">
+        <p> <%= "#{fight.players[0].character.name } Vs   #{fight.players[1].character.name } " %> </p>
+      </div>
+    <% end %>
+  <% end %>
 </div>
