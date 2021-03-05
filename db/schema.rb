@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_170233) do
+ActiveRecord::Schema.define(version: 2021_03_05_183809) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,5 +41,21 @@ ActiveRecord::Schema.define(version: 2021_03_05_170233) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "fights", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.integer "character_id", null: false
+    t.integer "fight_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_players_on_character_id"
+    t.index ["fight_id"], name: "index_players_on_fight_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "players", "characters"
+  add_foreign_key "players", "fights"
 end

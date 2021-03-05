@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   root 'pages#home'
   resources :characters
+
+  resources :fights, only: [:new, :create, :show, :index]
 end

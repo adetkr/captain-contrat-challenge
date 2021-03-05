@@ -3,5 +3,6 @@ class Character < ApplicationRecord
   validates :life , presence: true
   validates :attack , presence: true
 
+  has_many :players
   has_one_attached :photo
 end
