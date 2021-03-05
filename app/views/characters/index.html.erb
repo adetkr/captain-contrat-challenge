@@ -1,14 +1,25 @@
 index.html.erb
 <div class="container">
-  <div>
-    <h1>available characters</h1>
-      <% @characters.each do |character| %>
-        <p> <%= character.name %> </p>
-        <br>
-      <% end %>
-    <div>
+  <h1>available characters</h1>
+  <div class="characters">
 
-    </div>
+      <% @characters.each do |character| %>
+          <%= link_to character_path(character) do %>
+            <div class="character">
+              <% if  character.photo.attached? %>
+                <%= cl_image_tag character.photo.key, height: 50, width: 50, crop: :fill %>
+                <p> <%= character.name %> </p>
+                <%= " #{character.life} | #{character.attack} " %>
+              <% else %>
+
+                <p> <%= character.name %> </p>
+                <%= " #{character.life} | #{character.attack} " %>
+              <% end %>
+            </div>
+          <% end %>
+
+      <% end %>
+
   </div>
 
   <div>

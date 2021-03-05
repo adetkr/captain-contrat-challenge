@@ -1,0 +1,18 @@
+<div class=" container character">
+  <% if  @character.photo.attached? %>
+    <%= cl_image_tag @character.photo.key, height: 50, width: 50, crop: :fill %>
+    <p> <%= @character.name %> </p>
+    <%= " #{@character.life} | #{@character.attack} " %>
+  <% else %>
+
+    <p> <%= @character.name %> </p>
+    <%= " #{@character.life} | #{@character.attack} " %>
+  <% end %>
+
+  <%= link_to "Edit character", edit_character_path %>
+
+  <%= link_to "Delete character",
+              character_path(@character),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+</div>
