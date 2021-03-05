@@ -1,0 +1,17 @@
+
+<div class="container p-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+        <h1 class="mb-5">Add your character</h1>
+          <%= simple_form_for(@character) do |f| %>
+            <%= f.input :name , label: "Name"  %>
+            <%= f.input :life , label: "Life capacity of the character"  %>
+            <%= f.input :attack , label: "Attack capcity of the character"  %>
+
+            <br>
+            <%= f.submit 'Add Character' , :class => "btn btn-primary"  %>
+          <% end %>
+    </div>
+  </div>
+</div>
+
