@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>available characters</h1>
+  <h1 class="text-center mt-5 mb-5">Available Characters</h1>
   <div class="characters">
 
       <% @characters.each do |character| %>
@@ -8,11 +8,11 @@
               <% if  character.photo.attached? %>
                 <%= cl_image_tag character.photo.key, height: 50, width: 50, crop: :fill %>
                 <p> <%= character.name %> </p>
-                <%= " #{character.life} | #{character.attack} " %>
+                <%= "❤️ #{character.life} | ⚔️ #{character.attack} " %>
               <% else %>
 
                 <p> <%= character.name %> </p>
-                <%= " #{character.life} | #{character.attack} " %>
+                <%= " ❤️ #{character.life} | ⚔️ #{character.attack} " %>
               <% end %>
             </div>
           <% end %>
@@ -21,11 +21,11 @@
 
   </div>
 
-  <div>
-     <%= link_to "Add a new character", new_character_path %>
+  <div class=" d-flex justify-content-center">
+     <%= link_to "Add a new character", new_character_path, class: 'btn btn-flat mt-5' %>
   </div>
 
-  <div>
-     <%= link_to "FIGHT!", new_fight_path %>
+  <div class=" d-flex justify-content-center">
+     <%= link_to "FIGHT!", new_fight_path, class: 'btn btn-flat mt-2' %>
   </div>
 </div>

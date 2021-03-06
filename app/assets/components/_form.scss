@@ -1,0 +1,20 @@
+
+.form{
+  margin-top: 30px;
+  & label, p {
+    color: white !important;
+  }
+}
+
+.error-message{
+  color: white;
+}
+
+.field{
+  margin-top: 15px;
+}
+
+form{
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 5px 20px 10px 20px;
+}

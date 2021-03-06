@@ -1,24 +1,32 @@
 
 <div class="container">
-  <div>
-    <div class="character">
-      <p> <%= @fight.players[0].character.name  %> </p>
+  <div class="fighters d-flex">
+    <%= link_to character_path(@fight.players[0].character) do %>
+      <div class="character">
+        <p> <%= @fight.players[0].character.name  %> </p>
+      </div>
+    <% end %>
+    <%= link_to character_path(@fight.players[1].character) do %>
+      <div class="character">
+        <p> <%= @fight.players[1].character.name  %> </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="fight-details-container">
+    <% @fight.fight_logs.each do |fight_log| %>
+      <p class="fight-details text-center"> <%= fight_log.move_description %> </p>
+    <% end %>
+  </div>
+
+
+
+  <div class="row d-flex justify-content-center">
+    <div class="text-center">
+      <%= link_to "HOME", root_path, class: 'btn btn-flat' %>
     </div>
-
-    <div class="character">
-      <p> <%= @fight.players[1].character.name  %> </p>
+    <div class="text-center">
+       <%= link_to "FIGHT AGAIN!", new_fight_path, class: 'btn btn-flat' %>
     </div>
   </div>
 
-  <% @fight.fight_logs.each do |fight_log| %>
-    <p> <%= fight_log.move_description %> </p>
-  <% end %>
-
-  <div>
-     <%= link_to "FIGHT AGAIN!", new_fight_path %>
-  </div>
-
-  <div>
-     <%= link_to "HOME", root_path %>
-  </div>
 </div>

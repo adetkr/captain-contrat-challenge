@@ -1,18 +1,36 @@
-<div class=" container character">
+
+<div class=" container character character-show">
+  <% count = @character.players.select { |player|  player.win  }.length  %>
   <% if  @character.photo.attached? %>
     <%= cl_image_tag @character.photo.key, height: 50, width: 50, crop: :fill %>
     <p> <%= @character.name %> </p>
-    <%= " #{@character.life} | #{@character.attack} " %>
+
+    <%= " #{@character.life} | #{@character.attack} | Games played : #{@character.players.length} | Games won : #{count}" %>
   <% else %>
 
     <p> <%= @character.name %> </p>
-    <%= " #{@character.life} | #{@character.attack} " %>
+    <%= " #{@character.life} | #{@character.attack} | Games played : #{@character.players.length} | Games won : #{count}" %>
   <% end %>
 
-  <%= link_to "Edit character", edit_character_path %>
+</div>
 
+<div class="container">
+  <h1 class="text-center mt-16"> Games Played</h1>
+  <% @character.fights.each do |fight| %>
+    <%= link_to fight_path(fight) do %>
+      <div class="fight">
+        <p> <%= "#{fight.players[0].character.name } Vs   #{fight.players[1].character.name } " %> </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="button-wrapper">
+  <%= link_to "Edit character", edit_character_path, class: 'btn btn-flat mt-2' %>
+  <%= link_to "Back to Home", root_path, class: 'btn btn-flat mt-2' %>
   <%= link_to "Delete character",
-              character_path(@character),
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
+                character_path(@character),
+                class: 'btn btn-flat mt-2',
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
 </div>

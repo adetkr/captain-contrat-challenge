@@ -9,7 +9,7 @@
 </div>
 
 <div class="container">
-  <h1> Last Games Played</h1>
+  <h1 class="text-center mt-16"> Last Games Played</h1>
   <% Fight.all.last(5).each do |fight| %>
     <%= link_to fight_path(fight) do %>
       <div class="fight">

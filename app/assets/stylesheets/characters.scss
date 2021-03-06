@@ -13,13 +13,29 @@ a {
 }
 
 .character {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   a {
     text-decoration: none;
   }
 
+  a:hover {
+    text-decoration: none;
+  }
   img {
     border-radius: 50%;
   }
 
+}
+
+.character-show {
+  margin:100px;
+}
+
+.button-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
