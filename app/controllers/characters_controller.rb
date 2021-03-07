@@ -46,6 +46,6 @@ class CharactersController < ApplicationController
   end
 
   def params_character
-    params.require(:character).permit(:name, :life, :attack, :photo)
+    params.require(:character).permit(:name, :life, :attack, :speed, :photo)
   end
 end

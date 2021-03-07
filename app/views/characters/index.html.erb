@@ -4,15 +4,15 @@
 
       <% @characters.each do |character| %>
           <%= link_to character_path(character) do %>
-            <div class="character">
+            <div class="character text-center p-4">
               <% if  character.photo.attached? %>
                 <%= cl_image_tag character.photo.key, height: 50, width: 50, crop: :fill %>
                 <p> <%= character.name %> </p>
-                <%= "❤️ #{character.life} | ⚔️ #{character.attack} " %>
+                <%= "❤️ #{character.life} | ⚔️ #{character.attack} | ⚡ #{character.speed}" %>
               <% else %>
-
+                <%= image_tag "unkown.jpeg", height: 50, width: 50, crop: :fill %>
                 <p> <%= character.name %> </p>
-                <%= " ❤️ #{character.life} | ⚔️ #{character.attack} " %>
+                <%= " ❤️ #{character.life} | ⚔️ #{character.attack} | ⚡ #{character.speed}" %>
               <% end %>
             </div>
           <% end %>

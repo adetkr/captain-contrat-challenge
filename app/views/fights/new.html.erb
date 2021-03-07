@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h1 class='text-center'>New Fight</h1>
-  <%= form_for @fight do |f| %>
+  <%= simple_form_for @fight do |f| %>
     <% if @fight.errors.any? %>
       <ul>
         <% @fight.errors.full_messages.each do |message| %>

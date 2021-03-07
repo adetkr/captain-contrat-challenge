@@ -22,7 +22,7 @@ class FightsController < ApplicationController
       player2 = @fight.players[1]
 
       while player1.character.life > 0
-        # player 1 attacks
+        #player 1 attacks
         attack(player1, player2)
         #check survivor
         break if player2.character.life <= 0
@@ -55,13 +55,31 @@ class FightsController < ApplicationController
 
   private
 
-  def attack(player1, player2)
+  def evade?(player)
+    rand < player.character.speed/100.0
+  end
 
-    player2.character.life -= player1.character.attack / 10
-    log = FightLog.new()
-    log.fight = player1.fight
-    log.move_description = " #{player1.character.name } impact #{player1.character.attack / 10} damage to #{player2.character.name }"
-    log.save
+  def attack(player1, player2)
+    if evade?(player2)
+      log = FightLog.new()
+      log.fight = player1.fight
+      log.move_description = " #{player2.character.name } evaded from  #{player1.character.name} attack "
+      log.save
+    else
+      if player2.shield.power > 0
+        player2.shield.power -= (player1.character.attack + player1.weapon.power) / 10
+        log = FightLog.new()
+        log.fight = player1.fight
+        log.move_description = " #{player2.character.name } blocked attack from #{player1.character.name } with #{player2.shield.name} shield"
+        log.save
+      else
+        player2.character.life -= (player1.character.attack + player1.weapon.power) / 10
+        log = FightLog.new()
+        log.fight = player1.fight
+        log.move_description = " #{player1.character.name } impact #{(player1.character.attack + player1.weapon.power) / 10} damage to #{player2.character.name }"
+        log.save
+      end
+    end
   end
 
   def fight_params

@@ -5,12 +5,12 @@
           <%= simple_form_for(@character) do |f| %>
             <%= f.input :name , label: "Name"  %>
             <%= f.input :life , label: "Life capacity of the character"  %>
-            <%= f.input :attack , label: "Attack capcity of the character"  %>
-
+            <%= f.input :attack , label: "Attack capacity of the character"  %>
+            <%= f.input :speed , label: "Speed capacity of the character"  %>
             <%= f.input :photo, as: :file %>
 
             <br>
-            <%= f.submit 'Add Character' , :class => "btn btn-primary"  %>
+            <%= f.submit 'Save Character' , :class => "btn btn-primary"  %>
           <% end %>
     </div>
   </div>

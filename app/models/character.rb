@@ -2,6 +2,7 @@ class Character < ApplicationRecord
   validates :name , uniqueness: true, presence:true
   validates :life , presence: true
   validates :attack , presence: true
+  validates :speed , presence: true
 
   has_many :players
   has_many :fights, through: :players
