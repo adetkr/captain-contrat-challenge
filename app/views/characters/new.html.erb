@@ -4,6 +4,13 @@
     <div class="col-6 mx-auto">
         <h1 class="mb-5">Add your favorite character !</h1>
           <%= simple_form_for(@character) do |f| %>
+                  <% if @character.errors.any? %>
+                    <ul>
+                      <% @character.errors.full_messages.each do |message| %>
+                        <li class="error"><%= message %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
               <%= f.input :name , label: "Name"  %>
               <%= f.input :life , label: "Life capacity of the character"  %>
               <%= f.input :attack , label: "Attack capacity of the character"  %>
