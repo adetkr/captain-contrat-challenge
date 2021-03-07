@@ -34,15 +34,9 @@ class FightsController < ApplicationController
       player2.win = !player1.win
 
       if player1.win
-        log = FightLog.new()
-        log.fight = player1.fight
-        log.move_description = " #{player1.character.name } win "
-        log.save
+        add_log(@fight, " #{player1.character.name } win ")
       else
-        log = FightLog.new()
-        log.fight = player1.fight
-        log.move_description = " #{player2.character.name } win "
-        log.save
+        add_log(@fight, " #{player2.character.name } win ")
       end
       player1.save
       player2.save
@@ -59,25 +53,23 @@ class FightsController < ApplicationController
     rand < player.character.speed/100.0
   end
 
+  def add_log(fight, move_description)
+    log = FightLog.new()
+    log.fight = fight
+    log.move_description = move_description
+    log.save
+  end
+
   def attack(player1, player2)
     if evade?(player2)
-      log = FightLog.new()
-      log.fight = player1.fight
-      log.move_description = " #{player2.character.name } evaded from  #{player1.character.name} attack "
-      log.save
+      add_log(@fight, " #{player2.character.name } evaded from  #{player1.character.name} attack ")
     else
       if player2.shield.power > 0
         player2.shield.power -= (player1.character.attack + player1.weapon.power) / 10
-        log = FightLog.new()
-        log.fight = player1.fight
-        log.move_description = " #{player2.character.name } blocked attack from #{player1.character.name } with #{player2.shield.name} shield"
-        log.save
+        add_log(@fight,  " #{player2.character.name } blocked attack from #{player1.character.name } with #{player2.shield.name} shield ")
       else
         player2.character.life -= (player1.character.attack + player1.weapon.power) / 10
-        log = FightLog.new()
-        log.fight = player1.fight
-        log.move_description = " #{player1.character.name } impact #{(player1.character.attack + player1.weapon.power) / 10} damage to #{player2.character.name }"
-        log.save
+        add_log(@fight, " #{player1.character.name } impact #{(player1.character.attack + player1.weapon.power) / 10} damage to #{player2.character.name }")
       end
     end
   end
