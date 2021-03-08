@@ -1,17 +1,31 @@
 <div class="container p-5">
   <div class="row">
     <div class="col-6 mx-auto">
-        <h1 class="mb-5">Add your character</h1>
+        <h1 class="mb-5">Add your favorite character !</h1>
           <%= simple_form_for(@character) do |f| %>
-            <%= f.input :name , label: "Name"  %>
-            <%= f.input :life , label: "Life capacity of the character"  %>
-            <%= f.input :attack , label: "Attack capacity of the character"  %>
-            <%= f.input :speed , label: "Speed capacity of the character"  %>
-            <%= f.input :photo, as: :file %>
+                  <% if @character.errors.any? %>
+                    <ul>
+                      <% @character.errors.full_messages.each do |message| %>
+                        <li class="error"><%= message %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+              <%= f.input :name , label: "Name"  %>
+              <%= f.input :life , label: "Life capacity of the character"  %>
+              <%= f.input :attack , label: "Attack capacity of the character"  %>
+              <%= f.input :speed , label: "Speed capacity of the character"  %>
+              <%= f.input :photo, as: :file %>
 
-            <br>
-            <%= f.submit 'Save Character' , :class => "btn btn-primary"  %>
+              <br>
+            <div class="text-center">
+              <%= f.submit 'Save Character' , :class => "btn btn-flat"  %>
+            </div>
           <% end %>
     </div>
   </div>
+  <div class=" d-flex justify-content-center">
+     <%= link_to "HOME", root_path, class: 'btn btn-flat mt-2' %>
+  </div>
 </div>
+
+

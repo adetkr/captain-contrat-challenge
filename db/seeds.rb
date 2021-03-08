@@ -43,8 +43,6 @@ CHARACTERS.each_with_index do |character_name, index|
 
 end
 
-# Simulate fights
-
 
 
 

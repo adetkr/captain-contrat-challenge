@@ -18,9 +18,11 @@
     <h1 class="text-center m-16" style=" margin: 45px;"> Last Games Played</h1>
     <% Fight.all.last(5).each do |fight| %>
       <%= link_to fight_path(fight) do %>
-        <div class="fight">
-          <p> <%= "#{fight.players[0].character.name } Vs   #{fight.players[1].character.name } " %> </p>
-        </div>
+        <% if fight.players.length == 2 %>
+          <div class="fight">
+            <p> <%= "#{fight.players[0].character.name }   Vs   #{fight.players[1].character.name }" %> </p>
+          </div>
+        <% end %>
       <% end %>
     <% end %>   <div class="text-center">
     <%= link_to "New Fight !", new_fight_path,  class: "btn btn-flat" %>

@@ -6,14 +6,14 @@ class Character < ApplicationRecord
 
   validate :total_points
 
-  has_many :players
+  has_many :players , dependent: :destroy
   has_many :fights, through: :players
   has_one_attached :photo
 
   def total_points
     if !life.nil? && !attack.nil? && !speed.nil?
       if life + attack + speed > 200
-        errors.add(:base, "Total charasteristic points can't excee 200")
+        errors.add(:base, "Total charasteristic points can't exceed 200")
       end
     end
   end

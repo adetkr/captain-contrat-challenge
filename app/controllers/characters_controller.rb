@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :destroy, :update]
 
   def new
-    @character = Character.new()
+    @character = Character.new
   end
 
   def create
@@ -20,11 +20,9 @@ class CharactersController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
-
   end
 
   def update
@@ -34,9 +32,7 @@ class CharactersController < ApplicationController
 
   def destroy
     @character.destroy
-
     redirect_to characters_path
-
   end
 
   private

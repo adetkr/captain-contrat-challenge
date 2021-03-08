@@ -21,9 +21,9 @@ class FightSimulator
     player2.win = !player1.win
 
     if player1.win
-      add_log(@fight, " #{player1.character.name } win ")
+      add_log(@fight, " #{player1.character.name } win ! Good Job !")
     else
-      add_log(@fight, " #{player2.character.name } win ")
+      add_log(@fight, " #{player2.character.name } win ! Good Job !")
     end
     player1.save
     player2.save
@@ -44,14 +44,14 @@ class FightSimulator
 
   def attack(player1, player2)
     if evade?(player2)
-      add_log(@fight, " #{player2.character.name } evaded from  #{player1.character.name} attack ")
+      add_log(@fight, " #{player2.character.name } evaded from  #{player1.character.name} attack ! Awesome ! ")
     else
       if player2.shield.power > 0
         player2.shield.power -= (player1.character.attack + player1.weapon.power) / 10
-        add_log(@fight,  " #{player2.character.name } blocked attack from #{player1.character.name } with #{player2.shield.name} shield ")
+        add_log(@fight,  " #{player2.character.name } blocked attack from #{player1.character.name } with #{player2.shield.name} shield ! Impressive ! ")
       else
         player2.character.life -= (player1.character.attack + player1.weapon.power) / 10
-        add_log(@fight, " #{player1.character.name } impact #{(player1.character.attack + player1.weapon.power) / 10} damage to #{player2.character.name }")
+        add_log(@fight, " #{player1.character.name } impact #{(player1.character.attack + player1.weapon.power) / 10} damage to #{player2.character.name } ! What a precise attack!")
       end
     end
   end
